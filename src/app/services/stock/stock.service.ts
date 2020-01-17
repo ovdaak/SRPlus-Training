@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { WareneingangInstituteRequestInterface, WareneingangInstituteResponseInterface } from '../../interfaces/stock/stock.interface';
+import { WareneingangArticleRequestInterface, WareneingangLocationsResponseInterface } from '../../interfaces/stock/stock.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +9,12 @@ import { WareneingangInstituteRequestInterface, WareneingangInstituteResponseInt
 export class StockService {
 
   readonly BASE_URL = '';
-  readonly INSTITUTES_URL = this.BASE_URL + '/mobile/getInstitute';
+  readonly ARTICLES_URL = this.BASE_URL + '/mobile/getArticles';
 
   constructor(private httpClient: HttpClient) { }
 
-  getInstitutes(institutesRequest: WareneingangInstituteRequestInterface): Observable<WareneingangInstituteResponseInterface> {
-    return this.httpClient.post<WareneingangInstituteResponseInterface>(this.INSTITUTES_URL, institutesRequest);
+  getArticles(institutesRequest: WareneingangArticleRequestInterface): Observable<WareneingangLocationsResponseInterface> {
+    return this.httpClient.post<WareneingangLocationsResponseInterface>(this.ARTICLES_URL, institutesRequest);
   }
 
 }
