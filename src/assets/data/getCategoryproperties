@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "Cat Property 1",
+  "fieldTypeId": 1,
+  "selectEventId": 1,
+  "scanAble": true,
+  "options": [{
+      "id": 1,
+      "name": "Option 1"
+  }]
+}

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { UserLogonResponseInterface, UserLogonRequestInterface } from '../interfaces/login.interface';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,12 @@ export class LoginService {
   constructor(private httpClient: HttpClient) { }
 
   doLogon(logonRequest: UserLogonRequestInterface): Observable<UserLogonResponseInterface> {
-    return this.httpClient.post<UserLogonResponseInterface>(this.LOGIN_URL, logonRequest);
+    return this.httpClient.post<UserLogonResponseInterface>(this.LOGIN_URL, logonRequest).pipe(
+      catchError(() => {
+        const logonError: UserLogonResponseInterface = {} as UserLogonResponseInterface;
+        return of(logonError);
+      })
+    );
   }
 
 }
