@@ -1,0 +1,211 @@
+Screen 01 - Anmeldedialog
+
+	01A) Füllen der Auswahl "Region" aus dem SRPlus-Backend:
+
+	Interface RegionsRequest:
+	- entfällt, da keine weiteren Daten an das Backend übermittelt werden müssen
+
+	Interface RegionsResponse: {
+		id: number;				// Region-ID
+		name: string;			// Anzeigename
+		selected: boolean		// True, wenn aufgrund IP vorausgewählt
+	}
+
+	Service RegionsService:
+	
+		Methode: getRegions()
+			Aufruf /mobile/getRegions ohne Argumente per GET
+			sofern noch keine Daten lokal verfügbar sind, sonst
+			rückgabe der lokalen Daten
+
+		Rewrite Rule im Backend:
+			RewriteRule	^/mobile/getRegions					"/xpaRQ?APPNAME=srp_Control&PRGNAME=srpGenericControl&ARGUMENTS=-N0,-A,-N37000,-N0" [P,L,QSA]
+
+
+	01B) Anmeldedaten validieren
+
+	Interface UserLogonRequest: {
+		username: string;		// Benutzername
+		password: string;		// Passwort - Base64 Enkodiert
+		regionId: number;		// Region ID aus Combobox
+	}
+
+	Interface UserLogonResponse: {
+		status: string;
+		userId: number;
+		sessionId: string;
+		errorText: string;		// Optional: Enthält Fehlermeldung bei nicht erfolgreicher Anmeldung. Response "errText" muss gemapped werden
+	}
+
+	Service UserlogonService:
+
+		Methode authenticateUser()
+			Aufruf /mobile/doLogon mit Benutzername, Passwort und Region per POST
+
+			Auswerten der Response: Hat sich im Verhältnis zum vorherigen Logon
+			ein anderer Benutzer angemeldet, müssen die lokalen Daten 
+			zerstört werden (Menü, etc.)
+
+		Rewrite Rule im Backend:
+			RewriteRule	^/mobile/doLogon					"/xpaRQ" [P,L,QSA]
+
+
+Screen 02 - Hauptmenü
+
+	02A) Laden des Menüs nach Logon
+
+	Interface MenuRequest:
+	- entfällt, da keine besonderen Daten an das Backend übermittelt werden müssen
+
+	Interface MenuResponse: {
+		id: number;
+		event: number;
+		title: string;
+		anchor: string;
+	}
+
+	Service MenuService:
+
+		Methode getMenu()
+			Aufruf /mobile/getMenu?srpSID={SessionID}, sofern keine Daten im lokalen
+			Cache existieren, sonst Rückgabe dieser Daten
+
+		Rewrite Rule im Backend:
+			RewriteRule	^/mobile/getMenu?([^/]*)$			"/xpaRQ?APPNAME=srp_Control&PRGNAME=srpGenericControl&ARGUMENTS=-N0,-A,-N501,-N37010&ignorePaging=true$1" [P,L,QSA]
+
+
+Screen 03 - Wareneingang
+
+	Interface Wareneingang/HeadData: {
+		deliveryRecieptNo: string;
+		orderNo: string;
+		deliveryDate: date;
+	}
+
+	Interface Wareneingang/PositionData: {
+		number: number;
+		room: string;
+		locationId: number;
+		instituteId: number;
+		inventoryCode: string;
+		serialNo: string;
+		phaseId: number;
+		categoryId: number;
+		properties: [{
+			id: number;
+			value: string;
+		}];
+	}
+
+	Interface Wareneingang/ArticleRequest: {
+		search: string;
+		category1Id: number;
+		category2Id: number;
+		category3Id: number;
+	}
+
+	Interface Wareneingang/ArticleResponse: {
+		id: number;
+		name: string;
+		description: string;
+		catgoryId: number;		// Wird für die Ermittlung der Asset-Eigenschaften benötigt
+	}
+
+	Interface Wareneingang/CategoryRequest: {
+		parentId: number;
+	}
+
+	Interface Wareneingang/CategoryResponse: {
+		id: number;
+		name: string;
+		parentId: number;		// Optional - wird nur benötigt, wenn alle Kategorien mit 1 Request komplett geladen werden
+		level: number;			// Optional - wird nur benötigt, wenn alle Kategorien mit 1 Request komplett geladen werden
+	}
+
+	Interface Wareneingang/CategoryPropertiesRequest: {
+		categoryId: number;
+	}
+
+	Interface Wareneingang/CategoryPropertiesResponse: {
+		id: number;
+		name: string;
+		fieldTypeId: number;	// Definiert Input, Cobobox oder Select-Dialog/Screen
+		selectEventId: number;
+		scanAble: boolean;		// Flag: Wert kann per Scanner gelesen werden
+		options: [{				// Optional, nur für Typ Combobox relevant
+			id: number;
+			name: string;
+		}]
+	}
+
+	Interface Wareneingang/PhasesRequest:
+	- entfällt, da keine Daten an das Backend übermittelt werden müssen
+
+	Interface Wareneingang/PhasesResponse: {
+		id: number;
+		name: string;
+	}
+
+	Interface Wareneingang/LocationsRequest: {
+		room: string;
+	}
+
+	Interface Wareneingang/LocationsResponse: {
+		id: number;
+		name: string;
+	}
+
+	Interface Wareneingang/InstituteRequest: {
+		room: string;
+	}
+
+	Interface Wareneingang/InstituteResponse: {
+		id: number;
+		name: string;
+	}
+
+	Service WareneingangService:
+
+		Methode setHeadData()
+			Füllt Daten gem. Interface 	Wareneingang/Kopfdaten aus 1. Screen WE
+
+		Methode setPositionData()
+			Füllt Daten gem. Interface 	Wareneingang/Positionsdaten aus letztem Screen WE
+
+		Methode getArticles()
+			Request an /mobile/getArticles?srpSID={SessionID} zur Ermitlung der Artikel nach Suche
+
+		Rewrite Rule im Backend:
+			RewriteRule	^/mobile/getArticles?([^/]*)$		"/xpaRQ?APPNAME=srp_Control&PRGNAME=srpGenericControl&ARGUMENTS=-N0,-A,-N501,-N37020&ignorePaging=true$1" [P,L,QSA]
+
+		Methode getCategories()
+			Request an /mobile/getCategory?srpSID={SessionID} zur Ermittlung aller Kategoriene einer Stufe gem. Suche
+
+		Rewrite Rule im Backend:
+			RewriteRule	^/mobile/getArticles?([^/]*)$		"/xpaRQ?APPNAME=srp_Control&PRGNAME=srpGenericControl&ARGUMENTS=-N0,-A,-N501,-N37030&ignorePaging=true$1" [P,L,QSA]
+
+		Methode getPhases()
+			Request an /mobile/getPhases?srpSID={SessionID}
+
+		Rewrite Rule im Backend:
+			RewriteRule	^/mobile/getPhases?([^/]*)$			"/xpaRQ?APPNAME=srp_Control&PRGNAME=srpGenericControl&ARGUMENTS=-N0,-A,-N501,-N37040&ignorePaging=true$1" [P,L,QSA]
+
+		Methode getLocations()
+			Request an /mobile/getLocations?srpSID={SessionID}&room={Raumname}
+
+		Rewrite Rule im Backend:
+			RewriteRule	^/mobile/getLocations?([^/]*)$		"/xpaRQ?APPNAME=srp_Control&PRGNAME=srpGenericControl&ARGUMENTS=-N0,-A,-N501,-N37050&ignorePaging=true$1" [P,L,QSA]
+		
+		Methode getInstitutes()
+			Request an /mobile/getInstitute?srpSID={SessionID}&room={Raumname}
+
+		Rewrite Rule im Backend:
+			RewriteRule	^/mobile/getInstitute?([^/]*)$		"/xpaRQ?APPNAME=srp_Control&PRGNAME=srpGenericControl&ARGUMENTS=-N0,-A,-N501,-N37060&ignorePaging=true$1" [P,L,QSA]
+
+		Methode submitData()
+			Aufruf an /mobile/saveGoodsReceipt zum Übertragen der erfassten Daten per HTTP-Post
+
+		Rewrite Rule im Backend:
+			RewriteRule	^/mobile/saveGoodsReceipt?([^/]*)$	"/xpaRQ?APPNAME=srp_Control&PRGNAME=srpGenericControl&ARGUMENTS=-N0,-A,-N37070,-N0$1" [P,L,QSA]
+</body>
+</html>
