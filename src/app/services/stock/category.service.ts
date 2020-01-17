@@ -12,7 +12,7 @@ export class CategoryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCategories(categoryRequest: WareneingangCategoryRequestInterface): Observable<WareneingangCategoryResponseInterface> {
+  getCategory(categoryRequest: WareneingangCategoryRequestInterface): Observable<WareneingangCategoryResponseInterface> {
     return this.httpClient.post<WareneingangCategoryResponseInterface>(this.CATEGORY_URL, categoryRequest);
   }
 
