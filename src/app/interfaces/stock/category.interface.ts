@@ -19,7 +19,6 @@ export interface WareneingangCategoryPropertiesRequestInterface {
     categoryId: number;
 }
 
-
 export interface WareneingangCategoryPropertiesResponseInterface {
     id: number;
     name: string;
