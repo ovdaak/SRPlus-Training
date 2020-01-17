@@ -1,0 +1,8 @@
+{
+  "appId": "com.jsoftmobile.srpWeb",
+  "appName": "IonicApp",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Waren Liste</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor = "let item of items">
+      <ion-icon slot="start" [name]="item.scanned? 'barcode' : 'hand' "></ion-icon>
+      <ion-label>
+        <h3>{{item.id}} {{item.desc}}</h3>
+        <p>{{item.date}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
