@@ -25,9 +25,9 @@ Screen 01 - Anmeldedialog
 	01B) Anmeldedaten validieren
 
 	Interface UserLogonRequest: {
-		username: string;		// Benutzername
-		password: string;		// Passwort - Base64 Enkodiert
-		regionId: number;		// Region ID aus Combobox
+		srp_username: string;		// Benutzername
+		srp_password: string;		// Passwort - Base64 Enkodiert
+		srp_region: number;		// Region ID aus Combobox
 	}
 
 	Interface UserLogonResponse: {
