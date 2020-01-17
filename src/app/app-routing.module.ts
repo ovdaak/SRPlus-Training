@@ -5,11 +5,16 @@ const routes: Routes = [
   {
     path: '',
     //loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-    loadChildren: () => import('./logon-page/logon-page.module').then( m => m.LogonPagePageModule)
+    // loadChildren: () => import('./logon-page/logon-page.module').then( m => m.LogonPagePageModule)
+    loadChildren: () => import('./stocktake/stocktake.module').then( m => m.StocktakePageModule)
   },
   {
     path: 'logon-page',
-    loadChildren: () => import('./logon-page/logon-page.module').then( m => m.LogonPagePageModule)
+    loadChildren: () => import('./logon-page/logon-page.module').then(m => m.LogonPagePageModule)
+  },
+  {
+    path: 'stocktake',
+    loadChildren: () => import('./stocktake/stocktake.module').then(m => m.StocktakePageModule)
   }
 ];
 @NgModule({
@@ -18,4 +23,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
