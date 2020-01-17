@@ -1,31 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RegionResponseInterface, UserLogonResponseInterface, UserLogonRequestInterface } from '../interfaces/login.interface';
 import { Observable } from 'rxjs';
+import { UserLogonResponseInterface, UserLogonRequestInterface } from '../interfaces/login.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  baseURL = '';
-  regionsURL = this.baseURL + '/mobile/getRegions';
-  loginURL = this.baseURL + '/mobile/doLogon';
+  readonly BASE_URL = '';
+  readonly LOGIN_URL = this.BASE_URL + '/mobile/doLogon';
 
+  /*
   logonRequest: UserLogonRequestInterface = {
-    srp_username: '',
-    srp_password: '',
-    srp_region: 0
+    srp_username: 'js1',
+    srp_password: 'js1',
+    srp_region: 1
   }
+  */
 
   constructor(private httpClient: HttpClient) { }
 
-  getRegions(): Observable<RegionResponseInterface> {
-    return this.httpClient.get<RegionResponseInterface>(this.regionsURL);
-  }
-
-  doLogon(): Observable<UserLogonResponseInterface> {
-    return this.httpClient.post<UserLogonResponseInterface>(this.loginURL, this.logonRequest);
+  doLogon(logonRequest: UserLogonRequestInterface): Observable<UserLogonResponseInterface> {
+    return this.httpClient.post<UserLogonResponseInterface>(this.LOGIN_URL, logonRequest);
   }
 
 }
