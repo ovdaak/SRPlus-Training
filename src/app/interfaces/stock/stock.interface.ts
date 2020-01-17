@@ -16,26 +16,3 @@ export interface WareneingangArticleInterface {
 export interface WareneingangArticleResponseInterface {
     stock: WareneingangArticleInterface[];
 }
-
-export interface WareneingangPhasesResponseInterface {
-    id: number;
-    name: string;
-}
-
-export interface WareneingangLocationsRequestInterface {
-    room: string;
-}
-
-export interface WareneingangLocationsResponseInterface {
-    id: number;
-    name: string;
-}
-
-export interface WareneingangInstituteRequestInterface {
-    room: string;
-}
-
-export interface WareneingangInstituteResponseInterface {
-    id: number;
-    name: string;
-}

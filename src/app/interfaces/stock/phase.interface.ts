@@ -1,2 +1,4 @@
-export interface Phase.Interface {
+export interface WareneingangPhasesResponseInterface {
+    id: number;
+    name: string;
 }
