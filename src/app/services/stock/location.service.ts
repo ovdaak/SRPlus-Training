@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { WareneingangLocationsRequestInterface, WareneingangLocationsResponseInterface } from 'src/app/interfaces/stock/stock.interface';
+import { WareneingangLocationsRequestInterface, WareneingangLocationsResponseInterface } from 'src/app/interfaces/stock/location.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
 
-  readonly BASE_URL = '';
-  readonly LOCATIONS_URL = this.BASE_URL + '/mobile/getLocations';
+  readonly LOCATIONS_URL = [environment.baseUrl, 'getLocations'].join('/');
 
   constructor(private httpClient: HttpClient) { }
 

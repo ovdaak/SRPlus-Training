@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RegionService } from '../services/region.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(private regionService: RegionService) {
+
+    this.regionService.getRegions().subscribe(res => {
+      console.log(res);
+    });
+
+  }
 
 }

@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { WareneingangInstituteRequestInterface, WareneingangInstituteResponseInterface } from 'src/app/interfaces/stock/stock.interface';
+import { WareneingangInstituteRequestInterface } from 'src/app/interfaces/stock/institute.interface';
+import { WareneingangInstituteResponseInterface } from 'src/app/interfaces/stock/institute.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InstituteService {
 
-  readonly BASE_URL = '';
-  readonly INSTITUTES_URL = this.BASE_URL + '/mobile/getInstitute';
+  readonly INSTITUTES_URL = [environment.baseUrl, 'getInstitute'].join('/');
 
   constructor(private httpClient: HttpClient) { }
 

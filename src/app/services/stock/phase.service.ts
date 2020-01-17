@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { WareneingangPhasesResponseInterface } from 'src/app/interfaces/stock/stock.interface';
+import { WareneingangPhasesResponseInterface } from 'src/app/interfaces/stock/phase.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhaseService {
 
-  readonly BASE_URL = '';
-  readonly PHASES_URL = this.BASE_URL + '/mobile/getPhases';
+  readonly PHASES_URL = [environment.baseUrl, 'getPhases'].join('/');
 
   constructor(private httpClient: HttpClient) { }
 

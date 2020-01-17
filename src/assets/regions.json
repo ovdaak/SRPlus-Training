@@ -1,0 +1,11 @@
+{"regions":[
+  {"id":8, "name":"Deutschland", "selected":true} ,
+  {"id":1, "name":"Baden-Württemberg", "selected":false} ,
+  {"id":7, "name":"Bayern", "selected":false} ,
+  {"id":10, "name":"Berlin", "selected":false} ,
+  {"id":9, "name":"Brandenburg", "selected":false} ,
+  {"id":11, "name":"Bremen", "selected":false} ,
+  {"id":12, "name":"Hamburg", "selected":false} ,
+  {"id":2, "name":"Hessen", "selected":false} ,
+  {"id":13, "name":"Mecklenburg-Vorpommern", "selected":false}
+]}
