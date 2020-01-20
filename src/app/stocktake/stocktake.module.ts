@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { StocktakePageRoutingModule } from './stocktake-routing.module';
 
 import { StocktakePage } from './stocktake.page';
+import { SrplusHeaderComponent } from '../srplus-header/srplus-header.component';
 
 @NgModule({
   imports: [
@@ -14,9 +15,9 @@ import { StocktakePage } from './stocktake.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    StocktakePageRoutingModule,
+    StocktakePageRoutingModule
   ],
-  declarations: [StocktakePage]
+  declarations: [StocktakePage, SrplusHeaderComponent]
 })
 export class StocktakePageModule {
 }

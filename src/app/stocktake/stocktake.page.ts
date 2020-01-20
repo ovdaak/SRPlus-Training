@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { DateValidator } from './date-validator';
 
 @Component({
   selector: 'app-stocktake',
@@ -7,7 +8,6 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
   styleUrls: ['./stocktake.page.scss'],
 })
 export class StocktakePage implements OnInit {
-  readonly PAGE_TITLE = 'SRPlus-Scan Wareneingang';
   readonly PROMPT = 'Lieferschein und Bestellnummer auswählen';
   readonly LABEL_DELIVERY_NOTE = 'LS-Nr.';
   readonly LABEL_ORDER_CODE = 'Bestellnr.';
@@ -16,7 +16,7 @@ export class StocktakePage implements OnInit {
 
   readonly INVALID_DELIVERY_NOTE = 'Bitte Lieferscheinnummer angeben';
   readonly INVALID_ORDER_CODE = 'Bitte Bestellnummer angeben';
-  readonly INVALID_STOCKTAKE_DATE = 'Bitte Datum angeben';
+  readonly INVALID_STOCKTAKE_DATE = 'Bitte gültiges Datum angeben';
 
   minDate: Date = new Date();
   maxDate: Date = new Date();
@@ -25,13 +25,15 @@ export class StocktakePage implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.minDate.setFullYear(this.TODAY.getFullYear() - 1);
+    this.minDate.setHours(0, 0, 0, 0);
     this.maxDate.setDate(this.TODAY.getDate() + 1);
+    this.maxDate.setHours(0, 0, 0, 0);
 
     this.stocktakeForm = this.formBuilder.group(
       {
         delivery_note: ['', Validators.required],
         order_code: ['', Validators.required],
-        stocktake_date: [this.TODAY.toISOString()]
+        stocktake_date: [this.TODAY.toISOString(), DateValidator.inDateRange(this.minDate, this.maxDate)]
       });
 
       // console.log(this.stocktakeForm);
