@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{ PAGE_TITLE }}</ion-title>
+    <ion-title class=page_title>{{ PAGE_TITLE }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +8,7 @@
   <div>
     <ion-text color="dark" class="prompt">{{ PROMPT }}</ion-text>
 </div>
-  <form [formGroup]="stocktakeForm">
+  <form [formGroup]="stocktakeForm" (submit)="onSubmit()">
     <ion-item>
       <ion-label position="floating">{{ LABEL_DELIVERY_NOTE }}</ion-label>
       <ion-input 
@@ -46,7 +46,7 @@
     <ion-item>
       <ion-label position="floating">{{ LABEL_STOCKTAKE_DATE }}</ion-label>
       <ion-datetime 
-        displayFormat="DD.MM.YY" 
+        displayFormat="DD.MM.YYYY" 
         value="{{ TODAY }}" 
         formControlName="stocktake_date"
         [class.ion-invalid]="isValid('stocktake_date')">
@@ -66,5 +66,5 @@
 
 <ion-footer>
   <ion-button>Zurück</ion-button>
-  <ion-button (click)="onSubmit()" float-right>Weiter</ion-button>
+  <ion-button (click)="onSubmit()" class="ion-float-right">Weiter</ion-button>
 </ion-footer>

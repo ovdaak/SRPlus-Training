@@ -34,7 +34,7 @@ export class StocktakePage implements OnInit {
         stocktake_date: [this.TODAY.toISOString()]
       });
 
-      console.log(this.stocktakeForm);
+      // console.log(this.stocktakeForm);
       // this.stocktakeForm.valueChanges.subscribe(result => {
       //   console.log(result);
       // });
