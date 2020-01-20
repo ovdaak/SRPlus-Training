@@ -4,11 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { StocktakePageRoutingModule } from './stocktake-routing.module';
+import { PrimaryRecordPageRoutingModule } from './primary-record-routing.module';
 
-import { StocktakePage } from './stocktake.page';
+import { PrimaryRecordPage } from './primary-record.page';
 import { SrplusHeaderComponent } from '../srplus-header/srplus-header.component';
-import { PrimaryRecordPageModule } from '../primary-record/primary-record.module';
 import { SrplusHeaderModule } from '../srplus-header/srplus-header.module';
 
 @NgModule({
@@ -17,11 +16,9 @@ import { SrplusHeaderModule } from '../srplus-header/srplus-header.module';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    StocktakePageRoutingModule,
-    PrimaryRecordPageModule,
+    PrimaryRecordPageRoutingModule,
     SrplusHeaderModule
   ],
-  declarations: [StocktakePage]
+  declarations: [PrimaryRecordPage],
 })
-export class StocktakePageModule {
-}
+export class PrimaryRecordPageModule {}

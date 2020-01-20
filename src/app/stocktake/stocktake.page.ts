@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { DateValidator } from './date-validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stocktake',
@@ -23,7 +24,7 @@ export class StocktakePage implements OnInit {
 
   stocktakeForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     this.minDate.setFullYear(this.TODAY.getFullYear() - 1);
     this.minDate.setHours(0, 0, 0, 0);
     this.maxDate.setDate(this.TODAY.getDate() + 1);
@@ -56,5 +57,9 @@ export class StocktakePage implements OnInit {
 
   onSubmit() {
     this.stocktakeForm.markAllAsTouched();
+
+    if (this.stocktakeForm.valid) {
+      this.router.navigate(['primary-record']);
+    }
   }
 }

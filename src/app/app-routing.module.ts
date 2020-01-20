@@ -15,7 +15,11 @@ const routes: Routes = [
   {
     path: 'stocktake',
     loadChildren: () => import('./stocktake/stocktake.module').then(m => m.StocktakePageModule)
+  },  {
+    path: 'primary-record',
+    loadChildren: () => import('./primary-record/primary-record.module').then( m => m.PrimaryRecordPageModule)
   }
+
 ];
 @NgModule({
   imports: [

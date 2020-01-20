@@ -1,0 +1,30 @@
+<app-srplus-header [title]="'SRPlus Scan'"></app-srplus-header>
+
+<ion-content>
+  <div>
+    <ion-text color="dark" class="prompt">{{ 'test' }}</ion-text>
+  </div>
+
+  <form [formGroup]="stocktakeForm" (submit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">{{ 'test' }}</ion-label>
+      <ion-input 
+        type="text" 
+        formControlName="delivery_note">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">{{ 'test' }}</ion-label>
+      <ion-input 
+        type="text" 
+        formControlName="order_code">
+      </ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-button>Zurück</ion-button>
+  <ion-button (click)="onSubmit()" class="ion-float-right">Weiter</ion-button>
+</ion-footer>
