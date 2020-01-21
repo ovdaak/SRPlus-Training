@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="background-color: red;">
+      SRPlus
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button expand="block">Waren eingang</ion-button>
+  <ion-button (click)="refreshData()">Button1</ion-button>
+
+  <ul>
+    <li *ngFor="let article of stock$ | async" >
+      {{article.name}}
+    </li>
+  </ul>
+
+  <ul>
+    <li *ngFor="let menu of menus$ | async" >
+      {{menu.title}}
+    </li>
+  </ul>
+
+  <ul>
+    <li *ngFor="let region of regions$ | async" >
+      {{region.name}}
+    </li>
+  </ul>
+
+  <ul>
+    <li *ngFor="let category of categories$ | async" >
+      {{category.name}}
+    </li>
+  </ul>
+
+  <ul>
+    <li *ngFor="let institute of institutes$ | async" >
+      {{institute.name}}
+    </li>
+  </ul>
+
+  <ul>
+    <li *ngFor="let location of locations$ | async" >
+      {{location.name}}
+    </li>
+  </ul>
+
+</ion-content>
