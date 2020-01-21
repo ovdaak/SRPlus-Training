@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { WareneingangCategoryPropertiesRequestInterface } from 'src/app/interfaces/stock/category.interface';
-import { WareneingangCategoryPropertiesResponseInterface } from 'src/app/interfaces/stock/category.interface';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
+import { WareneingangCategoryPropertiesRequestInterface, WareneingangCategoryPropertiesResponseInterface } from '../../interfaces/stock/category.interface';
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { WareneingangLocationsRequestInterface, WareneingangLocationsResponseInterface } from 'src/app/interfaces/stock/location.interface';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
+import { WareneingangLocationsRequestInterface, WareneingangLocationsResponseInterface } from '../../interfaces/stock/location.interface';
 
 @Injectable({
   providedIn: 'root'

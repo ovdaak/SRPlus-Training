@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { RegionService } from '../services/region.service';
+import { RegionInterface, RegionResponseInterface } from '../shared/api-client/interfaces/region.interface';
+import { RegionService } from '../shared/api-client/services/region.service';
+import { AppStateService } from '../+state/appstate.service';
 
 @Component({
   selector: 'app-tab2',
@@ -8,11 +10,15 @@ import { RegionService } from '../services/region.service';
 })
 export class Tab2Page {
 
-  constructor(private regionService: RegionService) {
+    public regions$ = this.appState.regions$;
 
-    this.regionService.getRegions().subscribe(res => {
-      console.log(res);
-    });
+  constructor(private appState: AppStateService) {
+
+  }
+
+  refreshRegions(){
+
+    this.appState.fetchRegions();
 
   }
 

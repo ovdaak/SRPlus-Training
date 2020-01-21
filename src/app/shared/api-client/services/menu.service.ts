@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { MenuResponseInterface } from '../interfaces/menu.interface';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
 
-  readonly BASE_URL = '';
-  readonly MENU_URL = this.BASE_URL + '/mobile/getMenu';
+  readonly MENU_URL = [environment.baseUrl, 'getMenu'].join('/');
 
   constructor(private httpClient: HttpClient) { }
 

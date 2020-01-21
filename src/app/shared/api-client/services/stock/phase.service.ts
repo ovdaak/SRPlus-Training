@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { WareneingangPhasesResponseInterface } from 'src/app/interfaces/stock/phase.interface';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
+import { WareneingangPhasesResponseInterface } from '../../interfaces/stock/phase.interface';
 
 @Injectable({
   providedIn: 'root'

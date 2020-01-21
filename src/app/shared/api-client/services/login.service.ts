@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { UserLogonResponseInterface, UserLogonRequestInterface } from '../interfaces/login.interface';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  readonly BASE_URL = '';
-  readonly LOGIN_URL = this.BASE_URL + '/mobile/doLogon';
+  readonly LOGIN_URL = [environment.baseUrl, 'doLogon'].join('/');
 
   /*
   logonRequest: UserLogonRequestInterface = {
