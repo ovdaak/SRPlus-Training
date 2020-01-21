@@ -1,7 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {ConnectableObservable, merge, noop, Observable, OperatorFunction, Subject, Subscription, UnaryFunction} from 'rxjs';
 import {map, mergeAll, pluck, publishReplay, scan} from 'rxjs/operators';
-import {stateful} from './operators';
+import {stateful} from '../core/operators';
 
 function pipeFromArray<T, R>(fns: Array<UnaryFunction<T, R>>): UnaryFunction<T, R> {
   if (!fns) {
