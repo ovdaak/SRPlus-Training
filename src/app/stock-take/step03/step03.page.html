@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> 
+    <ion-title>Wareneingang</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  Der 3. Step im Wareneingang stellt das dynamische Formular zum Erfassen
+  der Assets bereit.
+</ion-content>
+
+<ion-footer>
+  <ion-button slot="start" (click)="finish()">Erfassung beenden</ion-button>
+  <ion-button slot="end" (click)="addAsset()">Neues Asset</ion-button>
+</ion-footer>

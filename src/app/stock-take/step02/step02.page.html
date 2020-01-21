@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> 
+    <ion-title>Wareneingang</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>
+      <ion-searchbar placeholder="Artikel suchen"></ion-searchbar>
+  <ion-button>Suchen</ion-button>
+  </ion-item-group>
+
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-label>Ergebnisse</ion-label>
+    </ion-item-divider>
+ 
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Items</ion-label>
+      </ion-list-header>
+            <ion-item>
+        <ion-label>Keine Artikel gefunden</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-item-group>
+</ion-content>
+
+<ion-footer>
+  <ion-button slot="start" [routerDirection]="'root'" [routerLink]="'/stock-take/category-search'">Filtern</ion-button>
+  <ion-button slot="end" [routerDirection]="'root'" [routerLink]="'/stock-take/step03'">Weiter ohne Auswahl</ion-button>
+</ion-footer>

@@ -1,0 +1,11 @@
+{
+    "/mobile/*": {
+	  "target": "https://v10e.sus.intern",
+	  "secure": false,
+	  "changeOrigin": true,
+	  "logLevel": "debug",
+	  "pathRewrite": {
+		"^/mobile": "/mobile"
+	  }
+	}
+}

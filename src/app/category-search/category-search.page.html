@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> 
+    <ion-title>category-search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Kategorie Stufe 1</ion-list-header>
+  
+    <ion-item>
+      <ion-select placeholder="Select category">
+        <ion-select-option value="1">Hardware</ion-select-option>
+        <ion-select-option value="2">Software</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-list-header *ngIf="this.currentStep > 1">Kategorie Stufe 2</ion-list-header>
+  
+    <ion-item *ngIf="this.currentStep > 1">
+      <ion-select placeholder="Select category">
+        <ion-select-option value="3">PC</ion-select-option>
+        <ion-select-option value="4">Laptop</ion-select-option>
+        <ion-select-option value="5">Mobilgerät</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-list-header *ngIf="this.currentStep > 2">Kategorie Stufe 3</ion-list-header>
+  
+    <ion-item *ngIf="this.currentStep > 2">
+      <ion-select placeholder="Select category">
+        <ion-select-option value="6">Fujitsu Lifebook E-Series</ion-select-option>
+        <ion-select-option value="7">IBM Thinkpad</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-button slot="start" (click)="gotoPrevStep()">Zurück</ion-button>
+  <ion-button slot="end"   (click)="gotoNextStep()">Weiter</ion-button>
+</ion-footer>
