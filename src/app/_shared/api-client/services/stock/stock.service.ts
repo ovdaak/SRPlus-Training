@@ -15,7 +15,8 @@ export class StockService {
   constructor(private httpClient: HttpClient) { }
 
   getArticles(articlesRequest: WareneingangArticleRequestInterface): Observable<WareneingangArticleResponseInterface> {
-    return this.httpClient.post<WareneingangArticleResponseInterface>(this.ARTICLES_URL, articlesRequest).pipe(
+    const params = {...articlesRequest};
+    return this.httpClient.get<WareneingangArticleResponseInterface>(this.ARTICLES_URL, {params}).pipe(
       catchError(() => {
         const stockError: WareneingangArticleResponseInterface = {stock: []};
         return of(stockError);

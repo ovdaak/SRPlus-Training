@@ -10,12 +10,13 @@ import { WareneingangInstituteRequestInterface, WareneingangInstituteResponseInt
 })
 export class InstituteService {
 
-  readonly INSTITUTES_URL = [environment.baseUrl, 'getInstitute'].join('/');
+  readonly INSTITUTES_URL = [environment.baseUrl, 'getInstitutes'].join('/');
 
   constructor(private httpClient: HttpClient) { }
 
   getInstitutes(institutesRequest: WareneingangInstituteRequestInterface): Observable<WareneingangInstituteResponseInterface> {
-    return this.httpClient.post<WareneingangInstituteResponseInterface>(this.INSTITUTES_URL, institutesRequest).pipe(
+    const params = {...institutesRequest};
+    return this.httpClient.get<WareneingangInstituteResponseInterface>(this.INSTITUTES_URL, {params}).pipe(
       catchError(() => {
         const institutesError: WareneingangInstituteResponseInterface = {institutes: []};
         return of(institutesError);

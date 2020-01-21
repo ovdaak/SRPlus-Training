@@ -15,7 +15,8 @@ export class LocationService {
   constructor(private httpClient: HttpClient) { }
 
   getLocations(locationsRequest: WareneingangLocationsRequestInterface): Observable<WareneingangLocationsResponseInterface> {
-    return this.httpClient.post<WareneingangLocationsResponseInterface>(this.LOCATIONS_URL, locationsRequest).pipe(
+    const params = {...locationsRequest};
+    return this.httpClient.get<WareneingangLocationsResponseInterface>(this.LOCATIONS_URL, {params}).pipe(
       catchError(() => {
         const locationsError: WareneingangLocationsResponseInterface = {locations: []};
         return of(locationsError);

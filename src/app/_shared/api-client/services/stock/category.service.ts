@@ -14,8 +14,9 @@ export class CategoryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCategories(categoriesRequest: WareneingangCategoryRequestInterface): Observable<WareneingangCategoryResponseInterface> {
-    return this.httpClient.post<WareneingangCategoryResponseInterface>(this.CATEGORIES_URL, categoriesRequest).pipe(
+  getCategories(requestParams: WareneingangCategoryRequestInterface): Observable<WareneingangCategoryResponseInterface> {
+    const params = {...requestParams};
+    return this.httpClient.get<WareneingangCategoryResponseInterface>(this.CATEGORIES_URL, {params}).pipe(
       catchError(() => {
         const categoriesError: WareneingangCategoryResponseInterface = {categories: []};
         return of(categoriesError);

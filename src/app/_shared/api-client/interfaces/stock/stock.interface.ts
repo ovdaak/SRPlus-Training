@@ -1,8 +1,8 @@
 export interface WareneingangArticleRequestInterface {
     search: string;
-    category1Id: number;
-    category2Id: number;
-    category3Id: number;
+    category1Id: string;
+    category2Id: string;
+    category3Id: string;
 }
 
 export interface WareneingangArticleInterface {

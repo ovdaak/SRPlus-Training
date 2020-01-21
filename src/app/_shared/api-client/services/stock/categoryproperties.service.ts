@@ -15,7 +15,8 @@ export class CategoryPropertiesService {
   constructor(private httpClient: HttpClient) { }
 
   getCategoryProperties(categorypropertiesRequest: WareneingangCategoryPropertiesRequestInterface): Observable<WareneingangCategoryPropertiesResponseInterface> {
-    return this.httpClient.post<WareneingangCategoryPropertiesResponseInterface>(this.CATEGORYPROPERTIES_URL, categorypropertiesRequest).pipe(
+    const params = {...categorypropertiesRequest};
+    return this.httpClient.get<WareneingangCategoryPropertiesResponseInterface>(this.CATEGORYPROPERTIES_URL, {params}).pipe(
       catchError(() => {
         const catpropError: WareneingangCategoryPropertiesResponseInterface = {} as WareneingangCategoryPropertiesResponseInterface;
         return of(catpropError);

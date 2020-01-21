@@ -1,5 +1,5 @@
 export interface WareneingangCategoryRequestInterface {
-    parentId: number;
+    parentId: string;
 }
 
 export interface WareneingangCategoryInterface {
@@ -16,7 +16,7 @@ export interface WareneingangCategoryResponseInterface {
 }
 
 export interface WareneingangCategoryPropertiesRequestInterface {
-    categoryId: number;
+    categoryId: string;
 }
 
 export interface WareneingangCategoryPropertiesResponseInterface {

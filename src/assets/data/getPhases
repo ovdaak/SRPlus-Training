@@ -1,0 +1,8 @@
+{"phases":[
+  {"id":1, "name":"Phase 1"},
+  {"id":2, "name":"Phase 2"},
+  {"id":3, "name":"Phase 3"},
+  {"id":4, "name":"Phase 4"},
+  {"id":5, "name":"Phase 5"},
+  {"id":6, "name":"Phase 6"}
+]}

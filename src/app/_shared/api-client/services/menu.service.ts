@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MenuService {
 
-  readonly MENU_URL = [environment.baseUrl, 'getMenu'].join('/');
+  readonly MENU_URL = [environment.baseUrl, 'getMenus'].join('/');
 
   constructor(private httpClient: HttpClient) { }
 
