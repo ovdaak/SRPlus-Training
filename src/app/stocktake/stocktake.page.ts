@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { DateValidator } from './date-validator';
+import { DateValidator } from '../shared/date-validator';
 import { Router } from '@angular/router';
 
 @Component({

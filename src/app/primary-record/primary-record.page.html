@@ -5,22 +5,12 @@
     <ion-text color="dark" class="prompt">{{ 'test' }}</ion-text>
   </div>
 
-  <form [formGroup]="stocktakeForm" (submit)="onSubmit()">
-    <ion-item>
-      <ion-label position="floating">{{ 'test' }}</ion-label>
-      <ion-input 
-        type="text" 
-        formControlName="delivery_note">
-      </ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">{{ 'test' }}</ion-label>
-      <ion-input 
-        type="text" 
-        formControlName="order_code">
-      </ion-input>
-    </ion-item>
+  <form [formGroup]="recordForm" (ngSubmit)="onSubmit(model)">
+    <formly-form 
+      [form]="recordForm" 
+      [fields]="fields" 
+      [model]="model">
+    </formly-form>
   </form>
 </ion-content>
 
